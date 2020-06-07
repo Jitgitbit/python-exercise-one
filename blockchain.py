@@ -4,6 +4,8 @@ blockchain = []
 
 def get_last_blockchain_value():
     """ Returns the last value of the current blockchain """
+    if len(blockchain) < 1:
+        return None
     return blockchain[-1]
 
 
