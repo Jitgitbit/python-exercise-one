@@ -87,6 +87,7 @@ while waiting_for_input:
     else:
         print('---> Input was invalid, please pick a value from the list!')
     if not verify_chain():
+        print_blockchain_elements()
         print('---> Invalid blockchain!')
         break
     print('---> Choice registered!')
