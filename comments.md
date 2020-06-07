@@ -13,4 +13,4 @@ by the use of the added DocString !!! This is a huge plus !! Respect !
 
 NOTE: elif, break and continue: continue stops the loop on the line and brings the loop back to it's starting position, break exits the loop !
 
-NOTE: There is no for(i = 0; i < 10; i++) loop in Python! remarkable !
+NOTE: There is no for(i = 0; i < 10; i++) loop in Python! remarkable ! Instead Python uses range() !
