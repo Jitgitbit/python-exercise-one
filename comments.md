@@ -1,7 +1,7 @@
 closing the REPL --------> controlD
 exiting a running program ----> controlZ 
 
-python blockchain.py
+python3 blockchain.py
 
 blockchain.append([blockchain[-1], 5.3])   (--> with [-1], we are accessing the last item in the list)
 
