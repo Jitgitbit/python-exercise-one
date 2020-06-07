@@ -23,20 +23,22 @@ def add_transaction(transaction_amount, last_transaction):
 
 def get_transaction_value():
     """ Returns the input of the user (a new transaction) as a float. """
-    user_input = float(input('Input your transaction amount please: ')) 
+    user_input = float(input('++> Input your transaction amount please: ')) 
     return user_input      
 
 
 def get_user_choice():
-    user_input = input('Input your choice: ')
+    user_input = input('+> Input your choice: ')
     return user_input
 
 
 def print_blockchain_elements():
     # Output the blockchain list to the console
     for block in blockchain:
-        print('Ouputting block')
+        print('-> Ouputting block')
         print(block)
+    else:
+        print('-' * 50)
 
 
 def verify_chain():
@@ -75,11 +77,13 @@ while waiting_for_input:
     elif user_choice == 'q':
         waiting_for_input = False
     else:
-        print('Input was invalid, please pick a value from the list!')
+        print('---> Input was invalid, please pick a value from the list!')
     if not verify_chain():
-        print('Invalid blockchain!')
+        print('---> Invalid blockchain!')
         break
-    print('Choice registered!')
+    print('---> Choice registered!')
+else:
+    print('---> User left!')
 
 
-print('Done!')
+print('===> Done!')
