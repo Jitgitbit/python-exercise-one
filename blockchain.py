@@ -1,14 +1,26 @@
-# def power_fn():
+# def power_fna():
 #     print(2 ** 3)
 
-# power_fn()
 
-blockchain = [[1]]
+def power_fnb(a, b):
+    return a ** b
 
-def add_value(transaction_amount):
-    blockchain.append([blockchain[-1], transaction_amount])              
-    print(blockchain)
+# power_fna()
+print(power_fnb(2, 3))
+######################################################################################################################
+
+blockchain = []
+
+
+def get_last_blockchain_value():
+    return blockchain[-1]
+
+
+def add_value(transaction_amount, last_transaction=[1]):
+    blockchain.append([last_transaction, transaction_amount])              
 
 add_value(2)
-add_value(0.9)
-add_value(10.89)
+add_value(0.9, get_last_blockchain_value())
+add_value(10.89, get_last_blockchain_value())
+
+print(blockchain)
