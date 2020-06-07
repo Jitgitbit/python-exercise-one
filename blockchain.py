@@ -21,21 +21,19 @@ def get_user_input():
     """ Returns the input of the user (a new transaction) as a float. """
     return float(input('Input your transaction amount please: '))       
 
+
 # Get the first transaction input and add the value to the blockchain
 tx_amount = get_user_input()
 add_value(tx_amount)
 
-# Get the second transaction input and add the value to the blockchain
-tx_amount = get_user_input()
-add_value(last_transaction=get_last_blockchain_value(), transaction_amount=tx_amount)
+# Getting subsequent transactions and adding the value to the blockchain
+while True:
+    tx_amount = get_user_input()
+    add_value(tx_amount, get_last_blockchain_value())
 
-# Get the third transaction input and add the value to the blockchain
-tx_amount = get_user_input()
-add_value(tx_amount, get_last_blockchain_value())
-
-# Output the blockchain list to the console
-for block in blockchain:
-    print('Ouputting block')
-    print(block)
+    # Output the blockchain list to the console
+    for block in blockchain:
+        print('Ouputting block')
+        print(block)
 
 print('Done!')
