@@ -7,12 +7,13 @@ def power_fnb(a, b):
 
 # power_fna()
 print(power_fnb(2, 3))
-######################################################################################################################
-
+##########################################################################################################################################################################
+# Initializing our blockchain list 
 blockchain = []
 
 
 def get_last_blockchain_value():
+    """ Returns the last value of the current blockchain """
     return blockchain[-1]
 
 
