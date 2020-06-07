@@ -1,5 +1,6 @@
 closing the REPL --------> controlD
 exiting a running program ----> controlZ 
+clear
 
 python3 blockchain.py
 
@@ -9,3 +10,5 @@ tx_amount = float(input('Input your transaction amount please: '))            (-
 
 NOTE: Very handy DocString technique allowed by Python, checkout the Screenshot, notice how the highlighted function gets explained
 by the use of the added DocString !!! This is a huge plus !! Respect !
+
+NOTE: elif, break and continue: continue stops the loop on the line and brings the loop back to it's starting position, break exits the loop !
