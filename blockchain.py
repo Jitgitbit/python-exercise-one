@@ -71,26 +71,12 @@ def print_blockchain_elements():
 
 def verify_chain():
     """ Verify the current blockchain and return True if it's valid, False otherwise."""
-    is_valid = True
-    for block_index in range(len(blockchain)):
-        if block_index == 0:
+    for (index, block) in enumerate(blockchain):
+        if index == 0:
             continue
-        elif blockchain[block_index][0] == blockchain[block_index - 1]:
-            is_valid = True
-        else:
-            is_valid = False
-            break
-    # for block in blockchain:
-    #     if block_index == 0:
-    #         block_index += 1
-    #         continue
-    #     elif block[0] == blockchain[block_index - 1]:
-    #         is_valid = True
-    #     else:
-    #         is_valid = False
-    #         break
-    #     block_index += 1
-    return is_valid
+        if block['previous_hash'] != hash_block(blockchain[index - 1]):
+            return False
+    return True
 
 
 waiting_for_input = True

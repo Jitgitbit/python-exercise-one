@@ -20,3 +20,5 @@ NOTE: There is no for(i = 0; i < 10; i++) loop in Python! remarkable ! Instead P
 NOTE: Dictionaries =kindOfLike= JS Objects ! And: the key is always written in '' !
 
 NOTE: Tuples: we can ommit the parentheses ! Except if you have a Tuple with only one element, in that case:  (element, ) !
+
+NOTE: enumerate() -> returns a Tuple ! Handy for indexing a list !
