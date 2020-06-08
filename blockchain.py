@@ -1,5 +1,6 @@
 # Initializing our blockchain list 
 blockchain = []
+open_transactions = []
 
 
 def get_last_blockchain_value():
@@ -19,6 +20,10 @@ def add_transaction(transaction_amount, last_transaction):
     if last_transaction == None:
         last_transaction = [1]
     blockchain.append([last_transaction, transaction_amount]) 
+
+
+def mine_block():
+    pass
 
 
 def get_transaction_value():
