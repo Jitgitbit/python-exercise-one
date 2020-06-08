@@ -177,9 +177,10 @@ while waiting_for_input:
         print('---> Invalid blockchain!')
         break
     print(' -> Printing balance for ThierryD: ', get_balance('ThierryD'))
+    print(' -> The balance of {} is: {:6.2f}'.format('ThierryD', get_balance('ThierryD')))
     print('--------------------------------------------------> Choice registered!')
 else:
     print('--------------------------------------------------> User left!')
 
 
-print('======================================================> Done!')
+print('==================================================> Done!')
