@@ -70,7 +70,7 @@ def print_blockchain_elements():
 
 
 def verify_chain():
-    """ Verify the current blockchain and return True if it's valid, False otherwise."""
+    """ Verify the current blockchain and return True if it's valid, False otherwise!"""
     for (index, block) in enumerate(blockchain):
         if index == 0:
             continue
@@ -102,16 +102,21 @@ while waiting_for_input:
     elif user_choice == '3':
         print_blockchain_elements()
     elif user_choice == 'h':
+        # Make sure that you don't try to "hack" the blockchain if it's empty
         if len(blockchain) >= 1:
-            blockchain[0] = [2]
+            blockchain[0] = {
+                'previous_hash': '',
+                'index': 0,
+                'transactions': [{'sender': 'Chris', 'recipient': 'ThierryD', 'amount': 100.0}]
+            }
     elif user_choice == 'q':
         waiting_for_input = False
     else:
         print('---> Input was invalid, please pick a value from the list!')
-    # if not verify_chain():
-    #     print_blockchain_elements()
-    #     print('---> Invalid blockchain!')
-    #     break
+    if not verify_chain():
+        print_blockchain_elements()
+        print('---> Invalid blockchain!')
+        break
     print('---> Choice registered!')
 else:
     print('---> User left!')
