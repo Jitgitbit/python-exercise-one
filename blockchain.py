@@ -19,6 +19,9 @@ def hash_block(block):
 
 def get_balance(participant):
     tx_sender = [[tx['amount'] for tx in block['transactions'] if tx['sender'] == participant] for block in blockchain]
+    # Underhere: 2lines: Don't forget to include the owed coins !
+    open_tx_sender = [tx['amount'] for tx in open_transactions if tx['sender'] == participant]
+    tx_sender.append(open_tx_sender)
     amount_sent = 0
     for tx in tx_sender:
         if len(tx) > 0:
@@ -57,9 +60,12 @@ def add_transaction(recipient, sender=owner, amount=1.0):
         'recipient': recipient, 
         'amount': amount
     }
-    open_transactions.append(transaction)
-    participants.add(sender)
-    participants.add(recipient)
+    if verify_transaction(transaction):
+        open_transactions.append(transaction)
+        participants.add(sender)
+        participants.add(recipient)
+        return True
+    return False
 
 
 def mine_block():
@@ -127,8 +133,11 @@ while waiting_for_input:
     if user_choice == '1':
         tx_data = get_transaction_value()
         recipient, amount = tx_data
-        # Note that the optional sender argument is skipped and therefore we have a named amount argument call !
-        add_transaction(recipient, amount=amount)
+        # Underhere: Note that the optional sender argument is skipped and therefore we have a named amount argument call !
+        if add_transaction(recipient, amount=amount):
+            print('---> Transaction was added!')
+        else:
+            print('---> Transaction failed!')
         print(' -> Printing open_transactions: ', open_transactions)
     elif user_choice == '2':
         if mine_block():
@@ -153,10 +162,10 @@ while waiting_for_input:
         print_blockchain_elements()
         print('---> Invalid blockchain!')
         break
-    print('---> Choice registered!')
     print(' -> Printing balance for ThierryD: ', get_balance('ThierryD'))
+    print('--------------------------------------------------> Choice registered!')
 else:
-    print('---> User left!')
+    print('--------------------------------------------------> User left!')
 
 
-print('===> Done!')
+print('======================================================> Done!')
