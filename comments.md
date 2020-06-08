@@ -22,3 +22,5 @@ NOTE: Dictionaries =kindOfLike= JS Objects ! And: the key is always written in '
 NOTE: Tuples: we can ommit the parentheses ! Except if you have a Tuple with only one element, in that case:  (element, ) !
 
 NOTE: enumerate() -> returns a Tuple (index, element) ! Handy for indexing a list !
+
+NOTE: adding to a set is relatively safe, python will only add uniques, if a value already exists, it will be ignored !

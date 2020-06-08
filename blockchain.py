@@ -37,6 +37,8 @@ def add_transaction(recipient, sender=owner, amount=1.0):
         'amount': amount
     }
     open_transactions.append(transaction)
+    participants.add(sender)
+    participants.add(recipient)
 
 
 def mine_block():
@@ -91,6 +93,7 @@ while waiting_for_input:
     print('1: Add a new transaction value')
     print('2: Mine a new block')
     print('3: Output the blockchain blocks')
+    print('4: Output participants')
     print('h: Manipulate the chain')
     print('q: Quit')
     user_choice = get_user_choice()
@@ -104,6 +107,8 @@ while waiting_for_input:
         mine_block()
     elif user_choice == '3':
         print_blockchain_elements()
+    elif user_choice == '4':
+        print(' -> Printing set of participants: ', participants)
     elif user_choice == 'h':
         # Make sure that you don't try to "hack" the blockchain if it's empty
         if len(blockchain) >= 1:
