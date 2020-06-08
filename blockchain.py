@@ -80,11 +80,11 @@ def mine_block():
     # copied_open_transactions = open_transactions
     copied_open_transactions = open_transactions[:]
     # Above is the correct way to copy Lists, it return a completely new List copied from the original !
-    open_transactions.append(reward_transaction)
+    copied_open_transactions.append(reward_transaction)
     block = {
         'previous_hash': hashed_block,
         'index': len(blockchain),
-        'transactions': open_transactions
+        'transactions': copied_open_transactions
     }
     blockchain.append(block)
     return True
