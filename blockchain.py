@@ -9,6 +9,10 @@ open_transactions = []
 owner = 'ThierryD'
 
 
+def hash_block(block):
+    return '-'.join([str(block[key]) for key in block])
+
+
 def get_last_blockchain_value():
     """ Returns the last value of the current blockchain """
     if len(blockchain) < 1:
@@ -34,8 +38,8 @@ def add_transaction(recipient, sender=owner, amount=1.0):
 
 def mine_block():
     last_block = blockchain[-1]
-    hashed_block = '-'.join([str(last_block[key]) for key in last_block])
-    print(' -> Printing hashed_block: ', hashed_block)
+    hashed_block = hash_block(last_block)
+    # print(' -> Printing hashed_block: ', hashed_block)
     block = {
         'previous_hash': hashed_block,
         'index': len(blockchain),
@@ -52,12 +56,13 @@ def get_transaction_value():
 
 
 def get_user_choice():
+    """Prompts the user for its choice and return it."""
     user_input = input('Enter your choice: ')
     return user_input
 
 
 def print_blockchain_elements():
-    # Output the blockchain list to the console
+    """ Output all blocks of the blockchain. """
     for block in blockchain:
         print(' -> Ouputting block:', block)
     else:
@@ -65,7 +70,7 @@ def print_blockchain_elements():
 
 
 def verify_chain():
-    # block_index = 0
+    """ Verify the current blockchain and return True if it's valid, False otherwise."""
     is_valid = True
     for block_index in range(len(blockchain)):
         if block_index == 0:
@@ -90,6 +95,8 @@ def verify_chain():
 
 waiting_for_input = True
 
+# A while loop for the user input interface
+# It's a loop that exits once waiting_for_input becomes False or when break is called
 while waiting_for_input:
     print('Please choose')
     print('1: Add a new transaction value')
