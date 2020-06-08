@@ -24,3 +24,5 @@ NOTE: Tuples: we can ommit the parentheses ! Except if you have a Tuple with onl
 NOTE: enumerate() -> returns a Tuple (index, element) ! Handy for indexing a list !
 
 NOTE: adding to a set is relatively safe, python will only add uniques, if a value already exists, it will be ignored !
+
+NOTE: List Comprehensions: nesting within nesting within nesting... . Why blockchain is the blockchain! 
