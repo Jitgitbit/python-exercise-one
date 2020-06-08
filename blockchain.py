@@ -16,6 +16,11 @@ def hash_block(block):
     return '-'.join([str(block[key]) for key in block])
 
 
+def get_balance(participant):
+    tx_sender = [[tx['amount'] for tx in block['transactions'] if tx['sender'] == participant] for block in blockchain]
+    return tx_sender
+
+
 def get_last_blockchain_value():
     """ Returns the last value of the current blockchain """
     if len(blockchain) < 1:
@@ -128,6 +133,7 @@ while waiting_for_input:
         print('---> Invalid blockchain!')
         break
     print('---> Choice registered!')
+    print(' -> Printing balance for ThierryD: ', get_balance('ThierryD'))
 else:
     print('---> User left!')
 
