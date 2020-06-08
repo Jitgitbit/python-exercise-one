@@ -7,6 +7,9 @@ genesis_block = {
 blockchain = [genesis_block]
 open_transactions = []
 owner = 'ThierryD'
+# participants = set(['ThierryD'])
+# The line above means the same as underhere, Python understands that this is a set !
+participants = {'ThierryD'}
 
 
 def hash_block(block):
