@@ -16,3 +16,5 @@ NOTE: elif, break and continue: continue stops the loop on the line and brings t
 NOTE: Python does not know "switch case statements" just the simple if-checks !
 
 NOTE: There is no for(i = 0; i < 10; i++) loop in Python! remarkable ! Instead Python uses range() !
+
+NOTE: Dictionaries =kindOfLike= JS Objects
