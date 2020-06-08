@@ -51,6 +51,7 @@ def mine_block():
         'transactions': open_transactions
     }
     blockchain.append(block)
+    return True
 
 
 def get_transaction_value():
@@ -104,7 +105,8 @@ while waiting_for_input:
         add_transaction(recipient, amount=amount)
         print(' -> Printing open_transactions: ', open_transactions)
     elif user_choice == '2':
-        mine_block()
+        if mine_block():
+            open_transactions = []
     elif user_choice == '3':
         print_blockchain_elements()
     elif user_choice == '4':
