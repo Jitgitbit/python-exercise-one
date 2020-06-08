@@ -1,6 +1,7 @@
 # Initializing our blockchain list 
 blockchain = []
 open_transactions = []
+owner = 'ThierryD'
 
 
 def get_last_blockchain_value():
@@ -32,12 +33,13 @@ def mine_block():
 
 def get_transaction_value():
     """ Returns the input of the user (a new transaction) as a float. """
-    user_input = float(input('++> Input your transaction amount please: ')) 
-    return user_input      
+    tx_recipient = input('Enter the recipient of the transaction: ')
+    tx_amount = float(input('Enter your transaction amount please: ')) 
+    return (tx_recipient, tx_amount)      
 
 
 def get_user_choice():
-    user_input = input('+> Input your choice: ')
+    user_input = input('Enter your choice: ')
     return user_input
 
 
