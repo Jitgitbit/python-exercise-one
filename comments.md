@@ -18,3 +18,5 @@ NOTE: Python does not know "switch case statements" just the simple if-checks !
 NOTE: There is no for(i = 0; i < 10; i++) loop in Python! remarkable ! Instead Python uses range() !
 
 NOTE: Dictionaries =kindOfLike= JS Objects ! And: the key is always written in '' !
+
+NOTE: Tuples: we can ommit the parentheses ! Except if you have a Tuple with only one element, in that case:  (element, ) !

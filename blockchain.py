@@ -35,7 +35,7 @@ def get_transaction_value():
     """ Returns the input of the user (a new transaction) as a float. """
     tx_recipient = input('Enter the recipient of the transaction: ')
     tx_amount = float(input('Enter your transaction amount please: ')) 
-    return (tx_recipient, tx_amount)      
+    return tx_recipient, tx_amount    
 
 
 def get_user_choice():
