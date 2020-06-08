@@ -34,12 +34,8 @@ def add_transaction(recipient, sender=owner, amount=1.0):
 
 def mine_block():
     last_block = blockchain[-1]
-    hashed_block = ''
-    for key in last_block:
-        value = last_block[key]
-        hashed_block = hashed_block + str(value)
-
-    # print(hashed_block)
+    hashed_block = '-'.join([str(last_block[key]) for key in last_block])
+    print(' -> Printing hashed_block: ', hashed_block)
     block = {
         'previous_hash': hashed_block,
         'index': len(blockchain),
@@ -63,8 +59,7 @@ def get_user_choice():
 def print_blockchain_elements():
     # Output the blockchain list to the console
     for block in blockchain:
-        print('-> Ouputting block')
-        print(block)
+        print(' -> Ouputting block:', block)
     else:
         print('-' * 50)
 
@@ -108,7 +103,7 @@ while waiting_for_input:
         recipient, amount = tx_data
         # Note that the optional sender argument is skipped and therefore we have a named amount argument call !
         add_transaction(recipient, amount=amount)
-        print(open_transactions)
+        print(' -> Printing open_transactions: ', open_transactions)
     elif user_choice == '2':
         mine_block()
     elif user_choice == '3':
