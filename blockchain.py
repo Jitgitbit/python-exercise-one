@@ -76,6 +76,10 @@ def mine_block():
         'recipient': owner,
         'amount': MINING_REWARD
     }
+    # Underhere is wrong, this only copies the refference, and not the value !
+    # copied_open_transactions = open_transactions
+    copied_open_transactions = open_transactions[:]
+    # Above is the correct way to copy Lists, it return a completely new List copied from the original !
     open_transactions.append(reward_transaction)
     block = {
         'previous_hash': hashed_block,
