@@ -1,12 +1,18 @@
+import functools
+# The reward we give to miners (for creating a new block)
 MINING_REWARD = 10
-# Initializing our blockchain list 
+
+# Our starting block for the blockchain
 genesis_block = {
     'previous_hash': '',
     'index': 0,
     'transactions': []
 }
+# Initializing our (empty) blockchain list
 blockchain = [genesis_block]
+# Unhandled transactions
 open_transactions = []
+# We are the owner of this blockchain node, hence this is our identifier (e.g. for sending coins)
 owner = 'ThierryD'
 # participants = set(['ThierryD'])
 # The line above means the same as underhere, Python understands that this is a set !
@@ -22,10 +28,11 @@ def get_balance(participant):
     # Underhere: 2lines: Don't forget to include the owed coins !
     open_tx_sender = [tx['amount'] for tx in open_transactions if tx['sender'] == participant]
     tx_sender.append(open_tx_sender)
-    amount_sent = 0
-    for tx in tx_sender:
-        if len(tx) > 0:
-            amount_sent += tx[0]
+    amount_sent = functools.reduce(lambda tx_sum, tx_amt: tx_sum + tx_amt[0] if len(tx_amt) > 0 else 0, tx_sender, 0)
+    # amount_sent = 0
+    # for tx in tx_sender:
+    #     if len(tx) > 0:
+    #         amount_sent += tx[0]
     tx_recipient = [[tx['amount'] for tx in block['transactions'] if tx['recipient'] == participant] for block in blockchain]
     amount_received = 0
     for tx in tx_recipient:
