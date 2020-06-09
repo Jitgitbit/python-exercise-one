@@ -28,3 +28,5 @@ NOTE: adding to a set is relatively safe, python will only add uniques, if a val
 NOTE: List Comprehensions: nesting within nesting within nesting... . Why blockchain is the blockchain! 
 
 NOTE: The Lambda fn =kindOfLike= an anonymous inline helperfunction.
+
+NOTE: sha256 is simply an algorythm which creates a 64 character hash !
