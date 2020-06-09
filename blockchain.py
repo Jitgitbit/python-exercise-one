@@ -80,22 +80,25 @@ def add_transaction(recipient, sender=owner, amount=1.0):
 
 
 def mine_block():
+    """Create a new block and add open transactions to it."""
+    # Fetch the currently last block of the blockchain
     last_block = blockchain[-1]
+    # Hash the last block (=> to be able to compare it to the stored hash value)
     hashed_block = hash_block(last_block)
+    # Miners should be rewarded, so let's create a reward transaction
     reward_transaction = {
         'sender': 'MINING',
         'recipient': owner,
         'amount': MINING_REWARD
     }
-    # Underhere is wrong, this copies the refference, and not the value ! This will mutate the original !
-    # copied_open_transactions = open_transactions
-    copied_open_transactions = open_transactions[:]
-    # Above is the correct way to copy Lists, it return a completely new List copied from the original !
-    copied_open_transactions.append(reward_transaction)
+    # Copy transaction instead of manipulating the original open_transactions list
+    # This ensures that if for some reason the mining should fail, we don't have the reward transaction stored in the open transactions
+    copied_transactions = open_transactions[:]
+    copied_transactions.append(reward_transaction)
     block = {
         'previous_hash': hashed_block,
         'index': len(blockchain),
-        'transactions': copied_open_transactions
+        'transactions': copied_transactions
     }
     blockchain.append(block)
     return True
