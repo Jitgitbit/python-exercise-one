@@ -161,6 +161,10 @@ def verify_chain():
             continue
         if block['previous_hash'] != hash_block(blockchain[index - 1]):
             return False
+        # UnderHere we exclude the reward_transaction, hence the [:-1]
+        if not valid_proof(block['transactions'][:-1], block['previous_hash'], block['proof']):
+            print('---> Proof of Work is invalid!')
+            return False
     return True
 
 
