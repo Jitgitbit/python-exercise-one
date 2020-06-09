@@ -30,3 +30,5 @@ NOTE: List Comprehensions: nesting within nesting within nesting... . Why blockc
 NOTE: The Lambda fn =kindOfLike= an anonymous inline helperfunction.
 
 NOTE: sha256 is simply an algorythm which creates a 64 character hash !
+
+NOTE: Nonce stands for Number used once (-> used as proof, from Proof of Work)
