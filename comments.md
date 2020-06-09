@@ -26,3 +26,5 @@ NOTE: enumerate() -> returns a Tuple (index, element) ! Handy for indexing a lis
 NOTE: adding to a set is relatively safe, python will only add uniques, if a value already exists, it will be ignored !
 
 NOTE: List Comprehensions: nesting within nesting within nesting... . Why blockchain is the blockchain! 
+
+NOTE: The Lambda fn =kindOfLike= an anonymous inline helperfunction.
