@@ -75,7 +75,7 @@ def save_data():
             #     'ot': open_transactions
             # }
             # f.write(pickle.dumps(save_data))
-    except IOError:
+    except (IOError, IndexError):
         print(' -> Saving failed!')
 
 
