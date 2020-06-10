@@ -1,6 +1,7 @@
 from functools import reduce
 import hashlib as hl
 from collections import OrderedDict
+import json
 
 from hash_util import hash_block, hash_string_256
 
@@ -25,10 +26,30 @@ owner = 'ThierryD'
 participants = {'ThierryD'}
 
 
+def save_data():
+    with open('blockchain.txt', mode='w') as f:
+        f.write(json.dumps(blockchain))
+        f.write('\n')
+        f.write(json.dumps(open_transactions))
+
+
 def valid_proof(transactions, last_hash, proof):
+    """Validate a proof of work number and see if it solves the puzzle algorithm (two leading 0s)
+
+        Arguments:
+            :transactions: The transactions of the block for which the proof is created.
+            :last_hash: The previous block's hash which will be stored in the current block.
+            :proof: The proof number we're testing.
+        """
+    # Create a string with all the hash inputs
     guess = (str(transactions) + str(last_hash) + str(proof)).encode()
+    print('*-> What is guess in valid_proof: ', guess)
+    # Hash the string
+    # IMPORTANT: This is NOT the same hash as will be stored in the previous_hash. It's a not a block's hash. It's only used for the proof-of-work algorithm.
     guess_hash = hash_string_256(guess)
-    print('*-> What is guess_hash in valid_proof: ', guess_hash)
+    print('**-> What is guess_hash in valid_proof: ', guess_hash)
+    # Only a hash (which is based on the above inputs) which starts with two 0s is treated as valid
+    # This condition is of course defined by you. You could also require 10 leading 0s - this would take significantly longer (and this allows you to control the speed at which new blocks can be added)
     return guess_hash[0:2] == '00'
 
 
@@ -54,12 +75,12 @@ def get_balance(participant):
     # This fetches sent amounts of open transactions (to avoid double spending)
     open_tx_sender = [tx['amount'] for tx in open_transactions if tx['sender'] == participant]
     tx_sender.append(open_tx_sender)
-    print('**-> What is tx_sender in get_balance: ', tx_sender)
+    print('***-> What is tx_sender in get_balance: ', tx_sender)
     amount_sent = reduce(lambda tx_sum, tx_amt: tx_sum + sum(tx_amt) if len(tx_amt) > 0 else tx_sum + 0, tx_sender, 0)
     # This fetches received coin amounts of transactions that were already included in blocks of the blockchain
     # We ignore open transactions here because you shouldn't be able to spend coins before the transaction was confirmed + included in a block
     tx_recipient = [[tx['amount'] for tx in block['transactions'] if tx['recipient'] == participant] for block in blockchain]
-    print('***-> What is tx_recipient in get_balance: ', tx_recipient)
+    print('****-> What is tx_recipient in get_balance: ', tx_recipient)
     amount_received = reduce(lambda tx_sum, tx_amt: tx_sum + sum(tx_amt) if len(tx_amt) > 0 else tx_sum + 0, tx_recipient, 0)
     # Return the total balance
     return amount_received - amount_sent
@@ -106,7 +127,7 @@ def mine_block():
     last_block = blockchain[-1]
     # Hash the last block (=> to be able to compare it to the stored hash value)
     hashed_block = hash_block(last_block)
-    print('****-> What is hashed_block in mine_block: ', hashed_block)
+    print('*****-> What is hashed_block in mine_block: ', hashed_block)
     proof = proof_of_work()
     # Miners should be rewarded, so let's create a reward transaction
     # reward_transaction = {
