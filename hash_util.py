@@ -17,4 +17,6 @@ def hash_block(block):
             :block: The block that should be hashed.
         """
     hashable_block = block.__dict__.copy()
+    # UnderHere we are really changing it, that's why we are keeping the copy above. Never change the original !
+    hashable_block['transactions'] = [tx.to_ordered_dict() for tx in hashable_block['transactions']]
     return hash_string_256(json.dumps(hashable_block, sort_keys=True).encode())
