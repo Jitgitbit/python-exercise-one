@@ -37,3 +37,5 @@ NOTE: Reading Multi-Line Content: '\n' is regarded by Python as one character !
 
 NOTE: There is an alternative for data storage in using JSON which is Pickle, this works with binary though, so it's not very practical here, because we
 want to humanly read our data and JSON converts Data to Text.
+
+NOTE: IOError --> groups all file related errors
