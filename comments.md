@@ -34,3 +34,6 @@ NOTE: sha256 is simply an algorythm which creates a 64 character hash !
 NOTE: Nonce stands for Number used once (-> used as proof, from Proof of Work)
 
 NOTE: Reading Multi-Line Content: '\n' is regarded by Python as one character !
+
+NOTE: There is an alternative for data storage in using JSON which is Pickle, this works with binary though, so it's not very practical here, because we
+want to humanly read our data and JSON converts Data to Text.
