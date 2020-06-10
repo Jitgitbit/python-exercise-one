@@ -5,9 +5,10 @@ import json
 import pickle
 
 # Import two functions from our hash_util.py file. Omit the ".py" in the import
-from hash_util import hash_string_256, hash_block
+from hash_util import hash_block
 from block import Block
 from transaction import Transaction
+from verification import Verification
 
 # The reward we give to miners (for creating a new block)
 MINING_REWARD = 10
@@ -83,7 +84,8 @@ def proof_of_work():
     last_hash = hash_block(last_block)
     proof = 0
     # Try different PoW numbers and return the first valid one
-    while not valid_proof(open_transactions, last_hash, proof):
+    verifier = Verification()
+    while not verifier.valid_proof(open_transactions, last_hash, proof):
         proof += 1
     return proof
 
@@ -132,7 +134,8 @@ def add_transaction(recipient, sender=owner, amount=1.0):
     #     'amount': amount
     # }
     transaction = Transaction(sender, recipient, amount)
-    if verify_transaction(transaction):
+    verifier = Verification()
+    if verifier.verify_transaction(transaction, get_balance):
         open_transactions.append(transaction)
         save_data()
         return True
@@ -213,7 +216,8 @@ while waiting_for_input:
     elif user_choice == '3':
         print_blockchain_elements()
     elif user_choice == '4':
-        if verify_transactions():
+        verifier = Verification()
+        if verifier.verify_transactions(open_transactions, get_balance):
             print(' -> All transactions are valid')
         else:
             print(' -> There are invalid transactions')
@@ -222,7 +226,8 @@ while waiting_for_input:
         waiting_for_input = False
     else:
         print(' -> Input was invalid, please pick a value from the list!')
-    if not verify_chain():
+    verifier = Verification()
+    if not verifier.verify_chain(blockchain):
         print_blockchain_elements()
         print(' -> Invalid blockchain!')
         # Break out of the loop
