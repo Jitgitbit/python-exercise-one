@@ -66,7 +66,8 @@ def save_data():
     """Save blockchain + open transactions snapshot to a file."""
     try:
         with open('blockchain.txt', mode='w') as f:
-            f.write(json.dumps(blockchain))
+			saveable_chain = [block.__dict__ for block in blockchain]
+            f.write(json.dumps(saveable_chain))
             f.write('\n')
             f.write(json.dumps(open_transactions))
             # save_data = {
