@@ -39,3 +39,12 @@ NOTE: There is an alternative for data storage in using JSON which is Pickle, th
 want to humanly read our data and JSON converts Data to Text.
 
 NOTE: IOError --> groups all file related errors
+
+NOTE: Classes in Python:
+    * self. =kindOfLike= this.
+    * __init__(self) is Python's version for constructor()        (-> called one of the so called DUNDER methods, (-> Double Under))
+    * there are also DUNDER attributes, f.e.: __dict__ , which converts into a dictionary for output !
+    * __repr__(self) is actually the print()
+    * if you want to make a var or attribut private, you should prefix it by "__" , f.e.: self.__warnings
+    * note the bafflingly easy syntax for inheritance: "class Car(Vehicle):"
+    * using the super() is pretty much the same
