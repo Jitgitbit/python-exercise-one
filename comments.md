@@ -54,3 +54,5 @@ pip3 install --upgrade pip
 python3 node.py
 
 in @classmethod, cls is a convention !
+
+NOTE: private attributes: the chain and open_transactions should be only editable from inside the blockchain class, that's why we made them private now.
