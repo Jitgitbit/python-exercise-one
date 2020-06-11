@@ -64,3 +64,9 @@ NOTE: the DUNDER init file works as as constructor for a folder, -> see utility 
 NOTE: __pycache__ -> Python is compiled to byte code in the end when it runs on your machine, and this folder simply holds this compiled code, this
 is done so that when you start your script again it doesn't has to recompile again every time, but can use this pre-compiled code, simply so that 
 it can be a bit faster. It will recompile and store on each change.
+
+NOTE:
+In REPL
+>>> import utility.hash_util
+>>> dir(utility.hash_util)
+---> the dir() command here will show you what python thinks a certain file is exporting ! Remember, what this file imports will also be listed here !
