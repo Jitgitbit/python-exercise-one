@@ -50,3 +50,5 @@ NOTE: Classes in Python:
     * using the super() is pretty much the same
 
 pip3 install --upgrade pip
+
+python3 node.py
