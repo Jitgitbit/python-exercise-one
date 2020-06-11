@@ -48,3 +48,5 @@ NOTE: Classes in Python:
     * if you want to make a var or attribut private, you should prefix it by "__" , f.e.: self.__warnings
     * note the bafflingly easy syntax for inheritance: "class Car(Vehicle):"
     * using the super() is pretty much the same
+
+pip3 install --upgrade pip
