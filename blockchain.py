@@ -15,16 +15,25 @@ MINING_REWARD = 10
 
 
 class Blockchain:
+    """The Blockchain class manages the chain of blocks as well as open transactions and the node on which it's running.
+    
+        Attributes:
+            :chain: The list of blocks
+            :open_transactions (private): The list of open transactions
+            :hosting_node: The connected node (which runs the blockchain).
+    """
     def __init__(self, hosting_node_id):
+        """The constructor of the Blockchain class."""
         # Our starting block for the blockchain
         genesis_block = Block(0, '', [], 100, 0)
         # Initializing our (empty) blockchain list
-        self.__chain = [genesis_block]
+        self.chain = [genesis_block]
         # Unhandled transactions
         self.__open_transactions = []
         self.load_data()
         self.hosting_node = hosting_node_id
-    
+
+    # This turns the chain attribute into a property with a getter (the method below) and a setter (@chain.setter)
     @property
     def chain(self):
         return self.__chain[:]
@@ -34,7 +43,9 @@ class Blockchain:
     def chain(self, val):
         self.__chain = val
 
+
     def get_open_transactions(self):
+        """Returns a copy of the open transactions list."""
         return self.__open_transactions[:]
 
     def load_data(self):
@@ -108,7 +119,7 @@ class Blockchain:
         open_tx_sender = [tx.amount
                           for tx in self.__open_transactions if tx.sender == participant]
         tx_sender.append(open_tx_sender)
-        print(tx_sender)
+        print(' => The transactions from sender are:',tx_sender)
         amount_sent = reduce(lambda tx_sum, tx_amt: tx_sum + sum(tx_amt)
                              if len(tx_amt) > 0 else tx_sum + 0, tx_sender, 0)
         # This fetches received coin amounts of transactions that were already included in blocks of the blockchain
@@ -137,7 +148,7 @@ class Blockchain:
                 :sender: The sender of the coins.
                 :recipient: The recipient of the coins.
                 :amount: The amount of coins sent with the transaction (default = 1.0)
-            """
+        """
         # transaction = {
         #     'sender': sender,
         #     'recipient': recipient,

@@ -1,6 +1,7 @@
 from hash_util import hash_string_256, hash_block
 
 class Verification:
+    """A helper class which offer various static and class-based verification and validation methods."""
     @staticmethod
     def valid_proof(transactions, last_hash, proof):
         """Validate a proof of work number and see if it solves the puzzle algorithm (two leading 0s)
@@ -8,8 +9,8 @@ class Verification:
             Arguments:
                 :transactions: The transactions of the block for which the proof is created.
                 :last_hash: The previous block's hash which will be stored in the current block.
-            	:proof: The proof number we're testing.
-            """
+                :proof: The proof number we're testing.
+        """
         # Create a string with all the hash inputs
         guess = (str([tx.to_ordered_dict() for tx in transactions]) + str(last_hash) + str(proof)).encode()
         # Hash the string
@@ -28,7 +29,7 @@ class Verification:
             if block.previous_hash != hash_block(blockchain[index - 1]):
                 return False
             if not cls.valid_proof(block.transactions[:-1], block.previous_hash, block.proof):
-                print('Proof of work is invalid')
+                print(' -> Proof of work is invalid')
                 return False
         return True
 
@@ -36,9 +37,9 @@ class Verification:
     def verify_transaction(transaction, get_balance):
         """Verify a transaction by checking whether the sender has sufficient coins.
 
-			Arguments:
-				:transaction: The transaction that should be verified.
-			"""
+            Arguments:
+                :transaction: The transaction that should be verified.
+        """
         sender_balance = get_balance()
         return sender_balance >= transaction.amount
 
