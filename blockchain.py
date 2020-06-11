@@ -25,8 +25,14 @@ class Blockchain:
         self.load_data()
         self.hosting_node = hosting_node_id
     
-    def get_chain(self):
+    @property
+    def chain(self):
         return self.__chain[:]
+
+    # The setter for the chain property
+    @chain.setter 
+    def chain(self, val):
+        self.__chain = val
 
     def get_open_transactions(self):
         return self.__open_transactions[:]
@@ -48,7 +54,7 @@ class Blockchain:
                     updated_block = Block(
                         block['index'], block['previous_hash'], converted_tx, block['proof'], block['timestamp'])
                     updated_blockchain.append(updated_block)
-                self.__chain = updated_blockchain
+                self.chain = updated_blockchain
                 open_transactions = json.loads(file_content[1])
                 # We need to convert  the loaded data because Transactions should use OrderedDict
                 updated_transactions = []
