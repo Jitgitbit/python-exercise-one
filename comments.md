@@ -60,3 +60,7 @@ NOTE: private attributes: the chain and open_transactions should be only editabl
 NOTE: Attributes vs properties: using properties also can protect our data from outside editing, they use getters and setters !
 
 NOTE: the DUNDER init file works as as constructor for a folder, -> see utility folder or here called the utility package !
+
+NOTE: __pycache__ -> Python is compiled to byte code in the end when it runs on your machine, and this folder simply holds this compiled code, this
+is done so that when you start your script again it doesn't has to recompile again every time, but can use this pre-compiled code, simply so that 
+it can be a bit faster. It will recompile and store on each change.
