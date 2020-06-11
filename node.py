@@ -27,7 +27,7 @@ class Node:
         for block in self.blockchain.chain:
             print(' => Outputting Block: ', block)
         else:
-            print('-' * 50)
+            print('-' * 100)
 
     def listen_for_input(self):
         waiting_for_input = True

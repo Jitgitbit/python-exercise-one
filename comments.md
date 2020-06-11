@@ -52,3 +52,5 @@ NOTE: Classes in Python:
 pip3 install --upgrade pip
 
 python3 node.py
+
+in @classmethod, cls is a convention !
