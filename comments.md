@@ -56,3 +56,5 @@ python3 node.py
 in @classmethod, cls is a convention !
 
 NOTE: private attributes: the chain and open_transactions should be only editable from inside the blockchain class, that's why we made them private now.
+
+NOTE: Attributes vs properties: using properties also can protect our data from outside editing, they use getters and setters !
