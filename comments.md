@@ -72,3 +72,10 @@ In REPL
 ---> the dir() command here will show you what python thinks a certain file is exporting ! Remember, what this file imports will also be listed here !
 
 NOTE: Why we Need a Private & Public Key Transaction Protection: without it, our transactions are not secure as long as they are not included in a block !
+THe private and public keys are a pair ! ----> This constructs the wallet !
+
+pip install pycrypto
+
+in Anaconda, pycrypto installed, will be using it's built-in terminal access.
+
+NOTE: on pycrypto: It's very strange but the import syntax for pycrypto doesn't match it's name, it's Crypto ! lol
