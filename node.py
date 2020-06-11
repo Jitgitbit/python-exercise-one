@@ -9,7 +9,7 @@ class Node:
     def __init__(self):
         # self.id = str(uuid4())
         self.wallet = Wallet()
-        self.blockchain = Blockchain(self.wallet.public_key)
+        self.blockchain = None
 
     def get_transaction_value(self):
         """ Returns the input of the user (a new transaction amount) as a float. """
@@ -68,6 +68,7 @@ class Node:
                     print(' -> There are invalid transactions')
             elif user_choice == '5':
                 self.wallet.create_keys()
+                self.blockchain = Blockchain(self.wallet.public_key)
             elif user_choice == '6':
                 pass
             elif user_choice == 'q':
