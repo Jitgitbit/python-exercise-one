@@ -70,3 +70,5 @@ In REPL
 >>> import utility.hash_util
 >>> dir(utility.hash_util)
 ---> the dir() command here will show you what python thinks a certain file is exporting ! Remember, what this file imports will also be listed here !
+
+NOTE: Why we Need a Private & Public Key Transaction Protection: without it, our transactions are not secure as long as they are not included in a block !
