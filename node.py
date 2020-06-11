@@ -57,7 +57,8 @@ class Node:
                 print(' => Outputting open transactions: ',
                       self.blockchain.get_open_transactions())
             elif user_choice == '2':
-                self.blockchain.mine_block()
+                if not self.blockchain.mine_block():
+                    print(' -> Mining failed! Got no Wallet?')
             elif user_choice == '3':
                 self.print_blockchain_elements()
             elif user_choice == '4':
