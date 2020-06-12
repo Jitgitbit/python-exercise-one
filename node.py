@@ -19,9 +19,9 @@ def get_ui():
 @app.route('/mine', methods=['POST'])
 def mine():
 	block = blockchain.mine_block()
-	dict_block = block.__dict__.copy()
-	dict_block['transactions'] = [tx.__dict__ for tx in dict_block['transactions']]
 	if block != None:
+		dict_block = block.__dict__.copy()
+		dict_block['transactions'] = [tx.__dict__ for tx in dict_block['transactions']]
 		response = {
 			'message': 'Block added successfully.',
 			'block': dict_block
