@@ -11,6 +11,22 @@ blockchain = Blockchain(wallet.public_key)
 CORS(app)
 
 
+@app.route('/wallet', methods=['POST'])
+def create_keys():
+	wallet.create_keys()
+	if wallet.save_keys():
+		response = {
+			'public_key': wallet.public_key,
+			'private_key': wallet.private_key
+		}
+		return jsonify(response), 201
+	else:
+		response = {
+			'message': 'Saving the keys failed!'
+		}
+		return jsonify(response), 500
+
+
 @app.route('/', methods=['GET'])
 def get_ui():
 	return 'This works!'
