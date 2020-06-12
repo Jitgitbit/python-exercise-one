@@ -79,3 +79,6 @@ pip install pycrypto
 in Anaconda, pycrypto installed, will be using it's built-in terminal access.
 
 NOTE: on pycrypto: It's very strange but the import syntax for pycrypto doesn't match it's name, it's Crypto ! lol
+
+pip install flask
+pip install flask-cors
