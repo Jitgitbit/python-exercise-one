@@ -82,3 +82,5 @@ NOTE: on pycrypto: It's very strange but the import syntax for pycrypto doesn't 
 
 pip install flask
 pip install flask-cors
+
+NOTE: Remember localhost is 0.0.0.0
