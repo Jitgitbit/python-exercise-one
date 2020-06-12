@@ -19,12 +19,19 @@ def create_keys():
 			'public_key': wallet.public_key,
 			'private_key': wallet.private_key
 		}
+		global blockchain
+		blockchain = Blockchain(wallet.public_key)
 		return jsonify(response), 201
 	else:
 		response = {
 			'message': 'Saving the keys failed!'
 		}
 		return jsonify(response), 500
+
+
+@app.route('/wallet', methods=['GET'])
+def load_keys():
+	pass
 
 
 @app.route('/', methods=['GET'])
