@@ -234,9 +234,10 @@
                                 public_key: response.data.public_key,
                                 private_key: response.data.private_key
                             }
+                            vm.funds = response.data.funds
                             vm.walletLoading = false
                         })
-                        .catch(function(err){
+                        .catch(function(error){
                             vm.success = null;
                             vm.error = error.data.message
                             vm.wallet = null
@@ -255,9 +256,10 @@
                                 public_key: response.data.public_key,
                                 private_key: response.data.private_key
                             }
+                            vm.funds = response.data.funds
                             vm.walletLoading = false
                         })
-                        .catch(function(err){
+                        .catch(function(error){
                             vm.success = null;
                             vm.error = error.data.message
                             vm.wallet = null
@@ -276,7 +278,17 @@
                     }
                 },
                 onMine: function() {
+                    var vm = this
                     axios.post('/mine')
+                        .then(function(response){
+                            vm.error = null
+                            vm.success = response.data.message
+                            vm.funds = response.data.funds
+                        })
+                        .catch(function(error){
+                            vm.success = null;
+                            vm.error = error.data.message
+                        })
                 },
                 onLoadData: function () {
                     if (this.view === 'chain') {
@@ -289,7 +301,7 @@
                                 vm.blockchain = response.data
                                 vm.dataLoading = false
                             })
-                            .catch(function(err){
+                            .catch(function(error){
                                 vm.dataLoading = false
                                 vm.error = 'Something went wrong!'
                             })
@@ -303,7 +315,7 @@
                                 vm.openTransactions = response.data
                                 vm.dataLoading = false
                             })
-                            .catch(function(err){
+                            .catch(function(error){
                                 vm.dataLoading = false
                                 vm.error = 'Something went wrong!'
                             })
