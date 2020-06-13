@@ -273,17 +273,17 @@
                         var vm = this                               // vm stands for view model !
                         axios.get('/chain')
                             .then(function(response){
-                                console.log(response.data)
+                                console.log(' -> logging blockchain: ', response.data)
                                 vm.blockchain = response.data
                             })
                     } else {
                         // Load transaction data
-                        if (Math.random() > 0.5) {
-                            this.error = null
-                        } else {
-                            this.success = null;
-                            this.error = 'Something went wrong!'
-                        }
+                        var vm = this                               // vm stands for view model !
+                        axios.get('/transactions')
+                            .then(function(response){
+                                console.log(' -> logging open transactions: ', response.data)
+                                vm.openTransactions = response.data
+                            })
                     }
                 }
             }
