@@ -271,18 +271,30 @@
                     if (this.view === 'chain') {
                         // Load blockchain data
                         var vm = this                               // vm stands for view model !
+                        this.dataLoading = true
                         axios.get('/chain')
                             .then(function(response){
                                 console.log(' -> logging blockchain: ', response.data)
                                 vm.blockchain = response.data
+                                vm.dataLoading = false
+                            })
+                            .catch(function(err){
+                                vm.dataLoading = false
+                                vm.error = 'Something went wrong!'
                             })
                     } else {
                         // Load transaction data
                         var vm = this                               // vm stands for view model !
+                        this.dataLoading = true
                         axios.get('/transactions')
                             .then(function(response){
                                 console.log(' -> logging open transactions: ', response.data)
                                 vm.openTransactions = response.data
+                                vm.dataLoading = false
+                            })
+                            .catch(function(err){
+                                vm.dataLoading = false
+                                vm.error = 'Something went wrong!'
                             })
                     }
                 }
