@@ -34,6 +34,8 @@ class Blockchain:
         self.__open_transactions = []
         self.load_data()
         self.hosting_node = hosting_node_id
+        # Initializing the new private peer_nodes attribute with an empty set ! 
+        self.__peer_nodes = set()
 
     # This turns the chain attribute into a property with a getter (the method below) and a setter (@chain.setter)
     @property
