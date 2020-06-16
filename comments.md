@@ -84,3 +84,5 @@ pip install flask
 pip install flask-cors
 
 NOTE: Remember localhost is 0.0.0.0
+
+python3 node.py -p 5001
