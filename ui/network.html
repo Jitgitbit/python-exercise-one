@@ -110,8 +110,19 @@
                             vm.error = error.response.data.message;
                         });
                 },
-                onRemoveNode: function() {
+                onRemoveNode: function (node_url) {
                     // Remove node as a peer node
+                    var vm = this;
+                    axios.delete('/node/' + node_url)
+                        .then(function (response) {
+                            vm.success = 'Deleted node successfully.';
+                            vm.error = null;
+                            vm.nodes = response.data.all_nodes
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
                 }
             }
         })
