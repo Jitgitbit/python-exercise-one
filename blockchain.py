@@ -5,8 +5,8 @@ import json
 import pickle
 
 # Import two functions from our hash_util.py file. Omit the ".py" in the import
-from utility.verification import Verification
 from utility.hash_util import hash_block
+from utility.verification import Verification
 from block import Block
 from transaction import Transaction
 from wallet import Wallet
@@ -14,15 +14,15 @@ from wallet import Wallet
 # The reward we give to miners (for creating a new block)
 MINING_REWARD = 10
 
-print(' => The name of this imported file is:', __name__)
+print(__name__)
 
 class Blockchain:
     """The Blockchain class manages the chain of blocks as well as open transactions and the node on which it's running.
     
-        Attributes:
-            :chain: The list of blocks
-            :open_transactions (private): The list of open transactions
-            :hosting_node: The connected node (which runs the blockchain).
+    Attributes:
+        :chain: The list of blocks
+        :open_transactions (private): The list of open transactions
+        :hosting_node: The connected node (which runs the blockchain).
     """
     def __init__(self, hosting_node_id):
         """The constructor of the Blockchain class."""
@@ -32,10 +32,9 @@ class Blockchain:
         self.chain = [genesis_block]
         # Unhandled transactions
         self.__open_transactions = []
-        self.load_data()
         self.hosting_node = hosting_node_id
-        # Initializing the new private peer_nodes attribute with an empty set ! 
         self.__peer_nodes = set()
+        self.load_data()
 
     # This turns the chain attribute into a property with a getter (the method below) and a setter (@chain.setter)
     @property
@@ -83,7 +82,7 @@ class Blockchain:
         except (IOError, IndexError):
             pass
         finally:
-            print(' -> Cleanup!')
+            print('Cleanup!')
 
     def save_data(self):
         """Save blockchain + open transactions snapshot to a file."""
@@ -103,7 +102,7 @@ class Blockchain:
                 # }
                 # f.write(pickle.dumps(save_data))
         except IOError:
-            print(' -> Saving failed!')
+            print('Saving failed!')
 
     def proof_of_work(self):
         """Generate a proof of work for the open transactions, the hash of the previous block and a random number (which is guessed until it fits)."""
@@ -116,7 +115,8 @@ class Blockchain:
         return proof
 
     def get_balance(self):
-        """Calculate and return the balance for a participant."""
+        """Calculate and return the balance for a participant.
+        """
         if self.hosting_node == None:
             return None
         participant = self.hosting_node
@@ -129,7 +129,7 @@ class Blockchain:
         open_tx_sender = [tx.amount
                           for tx in self.__open_transactions if tx.sender == participant]
         tx_sender.append(open_tx_sender)
-        print(' => The transactions from sender are:',tx_sender)
+        print(tx_sender)
         amount_sent = reduce(lambda tx_sum, tx_amt: tx_sum + sum(tx_amt)
                              if len(tx_amt) > 0 else tx_sum + 0, tx_sender, 0)
         # This fetches received coin amounts of transactions that were already included in blocks of the blockchain
@@ -154,10 +154,10 @@ class Blockchain:
     def add_transaction(self, recipient, sender, signature, amount=1.0):
         """ Append a new value as well as the last blockchain value to the blockchain.
 
-            Arguments:
-                :sender: The sender of the coins.
-                :recipient: The recipient of the coins.
-                :amount: The amount of coins sent with the transaction (default = 1.0)
+        Arguments:
+            :sender: The sender of the coins.
+            :recipient: The recipient of the coins.
+            :amount: The amount of coins sent with the transaction (default = 1.0)
         """
         # transaction = {
         #     'sender': sender,
@@ -213,10 +213,14 @@ class Blockchain:
         self.save_data()
 
     def remove_peer_node(self, node):
-        """Removes a new node from the peer node set.
+        """Removes a node from the peer node set.
 
         Arguments:
             :node: The node URL which should be removed.
         """
         self.__peer_nodes.discard(node)
         self.save_data()
+
+    def get_peer_nodes(self):
+        """Return a list of all connected peer nodes."""
+        return list(self.__peer_nodes)
