@@ -44,7 +44,7 @@ class Verification:
             :transaction: The transaction that should be verified.
         """
         if check_funds:
-            sender_balance = get_balance()
+            sender_balance = get_balance(transaction.sender)
             return sender_balance >= transaction.amount and Wallet.verify_signature(transaction)
         else:
             return Wallet.verify_signature(transaction)

@@ -116,12 +116,14 @@ class Blockchain:
             proof += 1
         return proof
 
-    def get_balance(self):
-        """Calculate and return the balance for a participant.
-        """
-        if self.public_key == None:
-            return None
-        participant = self.public_key
+    def get_balance(self, sender=None):
+        """Calculate and return the balance for a participant."""
+        if sender == None:
+            if self.public_key == None:
+                return None
+            participant = self.public_key
+        else:
+            participant = sender
         # Fetch a list of all sent coin amounts for the given person (empty lists are returned if the person was NOT the sender)
         # This fetches sent amounts of transactions that were already included in blocks of the blockchain
         tx_sender = [[tx.amount for tx in block.transactions
