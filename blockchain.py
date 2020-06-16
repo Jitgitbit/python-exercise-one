@@ -36,6 +36,7 @@ class Blockchain:
         self.public_key = public_key
         self.__peer_nodes = set()
         self.node_id = node_id
+        self.resolve_conflicts = False
         self.load_data()
 
     # This turns the chain attribute into a property with a getter (the method below) and a setter (@chain.setter)
@@ -202,7 +203,8 @@ class Blockchain:
         #     'recipient': owner,
         #     'amount': MINING_REWARD
         # }
-        reward_transaction = Transaction('MINING', self.public_key, '', MINING_REWARD)
+        reward_transaction = Transaction(
+            'MINING', self.public_key, '', MINING_REWARD)
         # Copy transaction instead of manipulating the original open_transactions list
         # This ensures that if for some reason the mining should fail, we don't have the reward transaction stored in the open transactions
         copied_transactions = self.__open_transactions[:]
@@ -210,18 +212,22 @@ class Blockchain:
             if not Wallet.verify_signature(tx):
                 return None
         copied_transactions.append(reward_transaction)
-        block = Block(len(self.__chain), hashed_block, copied_transactions, proof)
+        block = Block(len(self.__chain), hashed_block,
+                      copied_transactions, proof)
         self.__chain.append(block)
         self.__open_transactions = []
         self.save_data()
         for node in self.__peer_nodes:
             url = 'http://{}/broadcast-block'.format(node)
             converted_block = block.__dict__.copy()
-            converted_block['transactions'] = [tx.__dict__ for tx in converted_block['transactions']]
+            converted_block['transactions'] = [
+                tx.__dict__ for tx in converted_block['transactions']]
             try:
                 response = requests.post(url, json={'block': converted_block})
                 if response.status_code == 400 or response.status_code == 500:
                     print('Block declined, needs resolving')
+                if response.status_code == 409:
+                    self.resolve_conflicts = True
             except requests.exceptions.ConnectionError:
                 continue
         return block
